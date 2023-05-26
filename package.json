@@ -1,0 +1,22 @@
+{
+  "name": "linuxer",
+  "version": "1.0.0",
+  "description": "Your go-to bot discord for Linuxer learning and fun.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js",
+    "deploy": "node deploy-command.js"
+  },
+  "repository": "https://github.com/SinghalChinmay/linuxer.git",
+  "author": "Chinmay Singhal <chinmay.singhal08@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.41.0",
+    "eslint-config-prettier": "^8.8.0",
+    "prettier": "^2.8.8"
+  },
+  "dependencies": {
+    "discord.js": "^14.11.0",
+    "dotenv": "^16.0.3"
+  }
+}
