@@ -50,20 +50,15 @@ module.exports = {
     // TODO : Error handling
     if (subcmd == "cmd") {
       const cmdName = interaction.options.getString("cmdname");
-      const cmdData = new Promise((res, rej) => {
-        const run = spawn("tldr", [cmdName]);
-        run.stdout.on("data", (data) => {
-          res(data.toString());
-        });
-      });
-      cmdData.then((data) => {
+      const run = spawn("tldr", [cmdName]);
+      run.stdout.on("data", (data) => {
         const em = new EmbedBuilder()
           .setTitle("TL;DR")
           .setDescription(`Summary of ${cmdName}`)
           .addFields({
             name: "Summary",
             value: `\`\`\`
-${data}
+${data.toString()}
 \`\`\`
 `,
           });
@@ -72,32 +67,21 @@ ${data}
       });
     } else {
       const cmdName = interaction.options.getString("query");
-      let count = 0;
-      let newData = "";
-      const cmdData = new Promise((res, rej) => {
-        const run = spawn("tldr", ["--search", cmdName]);
-        run.stdout.on("data", (data) => {
-          newData += data.toString();
-          if (count >= 2) {
-            res(newData);
-            count = 0;
-            newData = "";
-          }
-          count++;
-        });
-      });
-      cmdData.then((data) => {
+      let newData = ``;
+      const run = spawn("tldr", ["--search", cmdName]);
+      run.stdout.on("data", (data) => {
+        newData += data.toString();
         const em = new EmbedBuilder()
           .setTitle("TL;DR")
           .setDescription(`List of CLI/tool for **"${cmdName}"**`)
           .addFields({
             name: "List",
             value: `\`\`\`
-${data}
+${newData}
 \`\`\`
 `,
           });
-        interaction.followUp({ embeds: [em] });
+        interaction.editReply({ embeds: [em] });
       });
     }
   },
