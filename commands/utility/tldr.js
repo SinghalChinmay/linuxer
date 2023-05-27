@@ -6,7 +6,6 @@ const {
   EmbedBuilder,
 } = require("discord.js");
 const { spawn } = require("child_process");
-const wait = require("node:timers/promises").setTimeout;
 
 const linkBtn = (cmd) => {
   const btn = new ButtonBuilder()
