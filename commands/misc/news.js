@@ -12,7 +12,7 @@ module.exports = {
     await interaction.deferReply();
     const embedData = [];
     const res = await axios.get(
-      "http://fetchrss.com/rss/64721b7d77eda6007c0b630264721c0cf95a6c1d71114762.xml"
+      "http://fetchrss.com/rss/647cbc95bd7ef250da3d4d32647cbe31653de369ef1d14b2.xml"
     );
     const data = await res.data;
     const parser = new xml.Parser();
